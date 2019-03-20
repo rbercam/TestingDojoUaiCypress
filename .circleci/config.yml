@@ -36,12 +36,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run:
-          name: start Server
-          command: npm run start
+
       - run:
           name: run Cypress
-          command: node_modules/.bin/cypress run
+          command: npm run start && node_modules/.bin/cypress run
 
       - store_artifacts:
           path: ~/google-search/cypress/screenshots
