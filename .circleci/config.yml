@@ -16,7 +16,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/google-search
+    working_directory: ~/quebracabeca
 
     steps:
       - checkout
@@ -39,12 +39,12 @@ jobs:
 
       - run:
           name: run Cypress
-          command: npm run start && node_modules/.bin/cypress run
+          command: node_modules/.bin/cypress run
 
       - store_artifacts:
-          path: ~/google-search/cypress/screenshots
+          path: ~/quebracabeca/cypress/screenshots
       - store_artifacts:
-          path: ~/google-search/cypress/videos
+          path: ~/quebracabeca/cypress/videos
 
 
 
