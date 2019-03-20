@@ -39,7 +39,7 @@ jobs:
 
       - run:
           name: run Cypress
-          command: node_modules/.bin/cypress run
+          command: npm run start && node_modules/.bin/cypress run
 
       - store_artifacts:
           path: ~/quebracabeca/cypress/screenshots

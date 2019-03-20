@@ -4,7 +4,7 @@
   "description": "formulario_teste_cypress",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js --port 9091",
+    "start": "node server.js --port 8080",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
