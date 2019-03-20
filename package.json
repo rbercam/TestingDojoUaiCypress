@@ -1,0 +1,27 @@
+{
+  "name": "formulario_teste",
+  "version": "1.0.0",
+  "description": "formulario_teste_cypress",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js --port 9091",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "Rafael Bercam",
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "^3.1.5",
+    "express": "^4.16.4",
+    "server-js": "^0.1.4"
+  },
+  "devDependencies": {
+    "dragula": "^3.7.2",
+    "faker": "^4.1.0",
+    "jquery": "^3.3.1",
+    "moment": "^2.24.0"
+  }
+}

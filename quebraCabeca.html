@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Drag n Drop - Exemplo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    Complete o Quebra Cabeça
+  </header>
+  <main>
+    <ul class="pieces">
+      <li><span class="piece piece-3" data-cy="3" id="3"></span></li>
+      <li><span class="piece piece-9" data-cy="9" id="9"></span></li>
+      <li><span class="piece piece-6" data-cy="6" id="6"></span></li>
+      <li><span class="piece piece-1" data-cy="1" id="1"></span></li>
+      <li><span class="piece piece-5" data-cy="5" id="5"></span></li>
+      <li><span class="piece piece-4" data-cy="4" id="4"></span></li>
+      <li><span class="piece piece-8" data-cy="8" id="8"></span></li>
+      <li><span class="piece piece-2" data-cy="2" id="2"></span></li>
+      <li><span class="piece piece-7" data-cy="7" id="7"></span></li>
+    </ul>
+    <div>
+      <p class="notice"></p>
+      <ul class="places">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </main>
+
+  <script src="/node_modules/dragula/dist/dragula.js"></script>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script>
+    dragula($('.pieces li, .places li').get(), {
+      accepts(el, target, source, sibling) {
+        return $(target).is(':empty')
+      },
+    }).on('drop', () => {
+      const $places = $('.places')
+      const $notice = $('.notice')
+      const $piecesInPlace = $places.find('.piece')
+      if ($piecesInPlace.length !== 9) return
+
+      const $piecesInRightPlace = $piecesInPlace.filter((i, el) => {
+        return (i + 1) === Number($(el).data('cy'))
+      })
+
+      if ($piecesInRightPlace.length !== 9) {
+        $notice
+          .text('Falhou, tente denovo!')
+          .addClass('error')
+      } else {
+        $notice
+          .text('Sucesso!')
+          .addClass('success')
+      }
+    })
+  </script>
+</body>
+
+</html>

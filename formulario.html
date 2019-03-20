@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reservas Já</title>
+</head>
+<style>
+form, h1 {
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 20px;
+}
+</style>
+<body>
+        <h1>Reservas Já</h1>
+        <form action="sucesso.html" oninput="total.value = (nights.valueAsNumber * 99) + ((guests.valueAsNumber - 1) * 10)">
+                <div class="form-group">
+                        <label class="label_name" id="label_name_id" data-testid="labelNameDataTestId" data-test="labelDataTest" data-cy="LabelNameDataCy"  for="CompleteName">Nome completo</label>
+                        <input type="text" class="form-control" id="complete_name" aria-describedby="name" required oninput="checkName(this)">
+                        <div class="alert alert-warning" role="alert" style="display: none" id="alertName">
+                                Nome completo deve ser preenchido!
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label for="Email">E-mail</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="email" required >
+                        <div class="alert alert-warning" role="alert" style="display: none" id="alertEmail">
+                                E-mail deve ser preenchido!
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label for="EmailConfirm">Confirmação de e-mail</label>
+                        <input type="email" class="form-control" id="confirm-email" aria-describedby="email-confirm" required >
+                        <div class="alert alert-warning" role="alert" style="display: none" id="alertEmailConfirmation">
+                                O E-mail de Confirmação está incorreto!
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label for="ArrivalDate">Data de chegada</label>
+                        <input type="date" class="form-control" id="arrival_date" aria-describedby="arrival_date" required >
+                        <div class="alert alert-warning" role="alert" style="display: none" id="alertDate">
+                                Data de chegada deve ser preenchido!
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label for="Period">Período</label>
+                        <select class="form-control" data-cy="period"="period_id" name="period" title="Período">
+                            <option data-cy="manha" value="manha"> Manhã </option>
+                            <option data-cy="tarde" value="tarde"> Tarde </option>
+                            <option data-cy="noite" value="noite"> Noite </option>
+                        </select>
+                </div>
+                <div class="form-group">
+                        <label>Número de dias</label>
+                        <input class="form-control" type="number" data-cy="nights" id="nights" name="nights" min="1" value="1" title="Número de noites" max="30" required>
+                        <small id="numerodiasinformation" class="form-text text-muted">A reserva poderá ser feita para o máximo de 30 dias</small>
+                </div>
+                <div class="form-group">
+                        <label>Número de convidados</label>
+                        <input class="form-control" type="number" data-cy="guests" id="guests" name="guests" min="1" value="1" title="Número de convidados" max="4" required on oninput="checkGuest(this)">
+                        <small id="numeroconvidadosinformation" class="form-text text-muted">Mínimo de 1 e máximo de 4 convidados</small>
+                        <div class="alert alert-warning" role="alert" style="display: none" id="alertInvite">
+                                Deve ter pelo menos um convidado!
+                        </div>
+                </div>
+
+                <div class="form-group">
+                        <label>Preço Total:</label>
+                        R$<output data-cy="total" name="total">99</output>.00
+                </div>
+                <button data-cy="submit-btn" type="submit" class="btn btn-success">Reservar</button>
+              </form>
+            </div>
+
+    <script>
+        function checkGuest(input) {
+            if (input.value < 1) {
+                var alert = document.getElementById('alertInvite');
+                 input.setCustomValidity(' ')
+                 alert.style.display = 'block'
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000)
+
+            } else {
+                input.setCustomValidity('')
+            }
+        }
+
+        function checkName(input) {
+            if (input.value == '') {
+                var alert = document.getElementById('alertName');
+                 input.setCustomValidity(' ')
+                 alert.style.display = 'block'
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000)
+            } else {
+                input.setCustomValidity('')
+            }
+        }
+/*
+        function checkEmail(input) {
+            if (input.value == '') {
+                var alert = document.getElementById('alertEmail');
+                 input.setCustomValidity(' ')
+                 alert.style.display = 'block'
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000)
+            } else {
+                input.setCustomValidity('')
+            }
+        }
+
+        function checkEmailConfirm(input) {
+            if (input.value == '') {
+                var alert = document.getElementById('alertEmailConfirm');
+                 input.setCustomValidity(' ')
+                 alert.style.display = 'block'
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000)
+            } else {
+                input.setCustomValidity('')
+            }
+        }
+
+        function checkDate(input) {
+            if (input.value == '') {
+                var alert = document.getElementById('alertDate');
+                 input.setCustomValidity(' ')
+                 alert.style.display = 'block'
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000)
+            } else {
+                input.setCustomValidity('')
+            }
+        }
+
+        function check(input) {
+            if (input.value != document.getElementById('email').value) {
+                var alert = document.getElementById('alertEmailConfirmation');
+                 input.setCustomValidity('Continua incorreto!')
+                 alert.style.display = 'block'
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000)
+            } else {
+                input.setCustomValidity('')
+            }
+        }
+        */
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
