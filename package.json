@@ -14,7 +14,7 @@
   "author": "Rafael Bercam",
   "license": "MIT",
   "dependencies": {
-    "cypress": "^3.1.5",
+    "cypress": "^12.7.0",
     "express": "^4.16.4",
     "server-js": "^0.1.4"
   },
